@@ -4,7 +4,6 @@ import Galaxy from "../models/Galaxy";
 const _repository = mongoose.model("Galaxy", Galaxy);
 
 class GalaxyService {
-
   async getAll() {
     return await _repository.find({});
   }
@@ -13,6 +12,12 @@ class GalaxyService {
   }
   async create(rawData) {
     return await _repository.create(rawData);
+  }
+  async edit(id, update) {
+    return await _repository.findByIdAndUpdate(id, update, { new: true });
+  }
+  async delete(id) {
+    await _repository.findByIdAndDelete(id);
   }
 }
 
